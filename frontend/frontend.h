@@ -2,11 +2,10 @@
 #define FRONTEND
 #define MAX 100
 
-#include <stdio.h>
-
-/* typedef struct Frontend
-{
-  int i;  
-}; */
+typedef struct Frontend{
+  int pid;
+  char user[MAX];
+  int pipeUser;
+}user, *user_ptr;
 
 #endif //FRONTEND

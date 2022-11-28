@@ -1,12 +1,17 @@
+BACKEND = backend
+FRONTEND = frontend
+PROMO = promotor
+C = gcc
+
 all:
-	gcc ./backend/backend.c -o ./backend/backend
-	gcc ./frontend/frontend.c -o ./frontend/frontend
+	@$(C) ./${BACKEND}/${BACKEND}.c -o ./${BACKEND}/${BACKEND} ./user_lib/users_lib.o
+	@$(C) ./${FRONTEND}/${FRONTEND}.c -o ./${FRONTEND}/${FRONTEND}
 
 back:
-	gcc ./backend/backend.c -o ./backend/backend
+	@$(C) ./${BACKEND}/${BACKEND}.c -o ./${BACKEND}/${BACKEND} ./user_lib/users_lib.o
 
 front:
-	gcc ./frontend/frontend.c -o ./frontend/frontend
+	@$(C) ./${FRONTEND}/${FRONTEND}.c -o ./${FRONTEND}/${FRONTEND}
 
 clean:
-	rm -f programa *.o
+	rm ./${BACKEND}/${BACKEND} ./${FRONTEND}/${FRONTEND}

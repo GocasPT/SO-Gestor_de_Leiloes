@@ -1,7 +1,9 @@
-#include "frontend.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include <unistd.h>
+#include "frontend.h"
 
 char **getCommad(char *str, int *index){
   char **argv = malloc(sizeof(char *));
@@ -9,8 +11,8 @@ char **getCommad(char *str, int *index){
   char *tmp;
   int i = 0;
 
-  tmp = strtok(str, s);
-  tmp[strcspn(tmp, "\n")] = 0;
+  str[strcspn(str, "\n")] = 0;  //  remover \n no final da string
+  tmp = strtok(str, s); //  divir string por tokens com char DELIM
 
   while( tmp != NULL ) {
     argv = realloc(argv, (i + 1) * sizeof(char *));
@@ -21,6 +23,30 @@ char **getCommad(char *str, int *index){
 
   *index = i - 1;
   return argv;
+}
+
+int checkString(char *str){
+  int i = 0 ;
+
+  while(i < strlen(str)){
+    if(isdigit(str[i]))
+      return 1;
+    i++;
+  }
+
+  return 0;
+}
+
+int checkInt(char *str){
+  int i = 0 ;
+
+  while(i < strlen(str)){
+    if(!isdigit(str[i]))
+      return 1;
+    i++;
+  }
+
+  return 0;
 }
 
 int main(int argc, char *argv[]){
@@ -64,7 +90,7 @@ int main(int argc, char *argv[]){
     cmd = getCommad(input, &index);
 
     if(!strcmp(cmd[0], "sell")){
-      if(index != 5)
+      if(index != 5 || checkString(cmd[2]) || checkInt(cmd[3]) || checkInt(cmd[4]) || checkInt(cmd[5]))
         printf("$ Parametos incompletos\n");
       else
         printf("sell...\n");
@@ -73,40 +99,46 @@ int main(int argc, char *argv[]){
       printf("list...\n");
 
     }else if(!strcmp(cmd[0], "licat")){
-      if(index != 1)
+      if(index != 1 || checkString(cmd[1]))
         printf("$ Parametos incompletos\n");
       else
-        printf("licat\n");
+        printf("licat...\n");
 
     }else if(!strcmp(cmd[0], "lisel")){
-      if(index != 1)
+      if(index != 1 || checkString(cmd[1]))
         printf("$ Parametos incompletos\n");
       else
-        printf("lisel\n");
+        printf("lisel...\n");
 
     }else if(!strcmp(cmd[0], "lival")){
-      if(index != 1)
+      if(index != 1 || checkInt(cmd[1]))
         printf("$ Parametos incompletos\n");
       else
-        printf("licat\n");
+        printf("licat...\n");
+
+    }else if(!strcmp(cmd[0], "litime")){
+      if(index != 1 || checkInt(cmd[1]))
+        printf("$ Parametos incompletos\n");
+      else
+        printf("licat...\n");
 
     }else if(!strcmp(cmd[0], "time")){
-      printf("time\n");
+      printf("time...\n");
 
     }else if(!strcmp(cmd[0], "buy")){
-      if(index  != 2)
+      if(index  != 2 || checkInt(cmd[1]) || checkInt(cmd[2]))
         printf("$ Parametos incompletos\n");
       else
-        printf("licat\n");
+        printf("buy...\n");
 
     }else if(!strcmp(cmd[0], "cash")){
-      printf("cash\n");
+      printf("cash...\n");
 
     }else if(!strcmp(cmd[0], "add")){
-      if(index != 1)
+      if(index != 1 || checkInt(cmd[1]))
         printf("$ Parametos incompletos\n");
       else
-        printf("add\n");
+        printf("add...\n");
 
     }else if(!strcmp(cmd[0], "exit")){
       exit(1);

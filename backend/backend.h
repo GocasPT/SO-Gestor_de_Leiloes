@@ -3,16 +3,16 @@
 
 #define MAX 100
 
-#include <stdio.h>
 #include "../frontend/frontend.h"
 #include "../promotor/promotor.h"
 
-typedef struct BACKENDs
+typedef struct Backend
 {
+  int time, heartBeat;
   int nUsersMax, nPromosMax;
   int nUsersAtivos, nPromosAtivos;
   struct Frontend users[MAX];
   struct Promotor promos[MAX];
-}server, *server_prt;
+} server;
 
 #endif //BACKEND

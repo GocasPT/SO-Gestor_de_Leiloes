@@ -1,12 +1,13 @@
-#ifndef PROOMOTOR_H
-#define PROMOTOR_H
+#ifndef PROMOTOR
+#define PROMOTOR
 
 #define MAX 100
 
-typedef struct Promotor{
+typedef struct Promotor
+{
     char categoria[MAX];
     char desconto[MAX];
     char duracao[MAX];
-}promoto, promotor_prt;
+}   discount, discount_prt;
 
-#endif //PROMOTOR_H
+#endif //PROMOTOR

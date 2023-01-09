@@ -1,11 +1,16 @@
 #ifndef FRONTEND
 #define FRONTEND
+
 #define MAX 100
 
-typedef struct Frontend{
+typedef struct Frontend
+{
   int pid;
-  char user[MAX];
-  int pipeUser;
-}user, *user_ptr;
+  int cash;
+  char username[MAX];
+  char password[MAX];
+  char pipeUser[MAX];
+  char command[MAX];
+} cliente;
 
 #endif //FRONTEND
